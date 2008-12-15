@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
-using CodeGallery.XPathParser;
+using CodePlex.XPathParser;
 
 namespace XPathParserTest {
     class XPathTreeBuilder : IXPathBuilder<XElement> {
