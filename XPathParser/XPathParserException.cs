@@ -3,7 +3,7 @@ using System.Security.Permissions;
 using System.Text;
 using System;
 
-namespace CodeGallery.XPathParser {
+namespace CodePlex.XPathParser {
     public class XPathParserException : System.Exception {
         public string queryString;
         public int    startChar;

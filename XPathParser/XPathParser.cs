@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace CodeGallery.XPathParser {
+namespace CodePlex.XPathParser {
     using XPathNodeType = System.Xml.XPath.XPathNodeType;
     using System.Globalization;
 

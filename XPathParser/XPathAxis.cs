@@ -1,4 +1,4 @@
-namespace CodeGallery.XPathParser {
+namespace CodePlex.XPathParser {
     public enum XPathAxis {
         Unknown      = 0,
         Ancestor        ,

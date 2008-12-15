@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.XPath;
 
-namespace CodeGallery.XPathParser {
+namespace CodePlex.XPathParser {
     public interface IXPathBuilder<Node> {
         // Should be called once per build
         void StartBuild();                 

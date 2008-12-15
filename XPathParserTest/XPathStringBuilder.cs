@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CodeGallery.XPathParser;
+using CodePlex.XPathParser;
 using System.Diagnostics;
 using System.Xml.XPath;
 

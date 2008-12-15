@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace CodeGallery.XPathParser {
+namespace CodePlex.XPathParser {
     // Extends XPathOperator enumeration
     internal enum LexKind {
         Unknown,        // Unknown lexeme
