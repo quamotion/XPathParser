@@ -13,6 +13,6 @@
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="XPathParser\XPathParser\bin\Release\XPathParser.dll" target="lib\net35" />
+    <file src="XPathParser\bin\Release\XPathParser.dll" target="lib\net35" />
   </files>
 </package>
