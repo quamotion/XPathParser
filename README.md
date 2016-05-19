@@ -1,4 +1,5 @@
 # XPathParser: XPath parser in C# source code.
+[![Build status](https://ci.appveyor.com/api/projects/status/7lupdjmn2tftttk1?svg=true)](https://ci.appveyor.com/project/qmfrederik/xpathparser)
 
 Close to one System.Xml uses in the XslCompiledTransform.
 Currently supports XPath 1.0 grammar.
