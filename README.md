@@ -1,5 +1,18 @@
-# XPathParser
+# XPathParser: XPath parser in C# source code.
 
+Close to one System.Xml uses in the XslCompiledTransform.
+Currently supports XPath 1.0 grammar.
+
+This implementation uses _Builder_ pattern to separate parsing code from result the parser should produce. 
+
+While parsing the source XPath parser calls method in the methods of `IXPathBuilder` interface provided by caller.
+
+User of this code expected to write his own `IXPathBuilder` implementation.
+Source code of this project contains two `IXPathBuilder` implementations for demo/testing purpose:
+* `XPathTreeBuilder` - constructs XLinq tree that represents XPath syntax tree.
+* `XPathStringBuilder` - compiles syntax tree back to XPaht string.
+
+## Architecture
 XPath is a language to query data from XML documents. It is built in to XSLT and can be used standalone in several .NET APIs. (http://www.w3.org/TR/xpath)
 In some cases customers need to parse XPath expressions themselves to analyze, modify or validate them. 
 `XPathParser` is the class that can help you doing this.
@@ -37,3 +50,6 @@ ctx = StartBuild();
 stp1 = Axis(ctx, XPathAxis.Parent, QilXmlNodeKind.Element, "", "a");
 stp2 = Axis(stp1, XPathAxis.Attribute, QilXmlNodeKind.Attribute, "", "b");
 return EndBuild(Predicate(stp1, stp2));
+
+## Credits
+This repository was forked from http://xpathparser.codeplex.com/
