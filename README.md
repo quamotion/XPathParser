@@ -13,6 +13,14 @@ Source code of this project contains two `IXPathBuilder` implementations for dem
 * `XPathTreeBuilder` - constructs XLinq tree that represents XPath syntax tree.
 * `XPathStringBuilder` - compiles syntax tree back to XPaht string.
 
+## Installation
+
+Install using the command line:
+
+```
+Install-Package XPathParser
+```
+
 ## Architecture
 XPath is a language to query data from XML documents. It is built in to XSLT and can be used standalone in several .NET APIs. (http://www.w3.org/TR/xpath)
 In some cases customers need to parse XPath expressions themselves to analyze, modify or validate them. 
