@@ -35,20 +35,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>XPathParser.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IXpathBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XPathAxis.cs" />
     <Compile Include="XPathParserException.cs" />
     <Compile Include="XPathOperator.cs" />
     <Compile Include="XPathParser.cs" />
     <Compile Include="XPathScanner.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <None Include="XPathParser.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
