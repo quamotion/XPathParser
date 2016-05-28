@@ -1,3 +1,4 @@
+*.lock.json
 .vs/
 bin/
 obj/

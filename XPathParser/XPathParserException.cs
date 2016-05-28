@@ -1,9 +1,8 @@
-using System.Runtime.Serialization;
-using System.Security.Permissions;
-using System.Text;
 using System;
+using System.Text;
 
-namespace CodePlex.XPathParser {
+namespace CodePlex.XPathParser
+{
     public class XPathParserException : System.Exception {
         public string queryString;
         public int    startChar;
