@@ -11,5 +11,5 @@ build_script:
   - cmd: dotnet pack -c Release --version-suffix r%APPVEYOR_BUILD_NUMBER%
 
 on_success:
-  - ps: Push-AppveyorArtifact "bin\Release\XPathParser.1.0.0-r$($env:APPVEYOR_BUILD_NUMBER).nupkg"
-  - ps: Push-AppveyorArtifact "bin\Release\XPathParser.1.0.0-r$($env:APPVEYOR_BUILD_NUMBER).symbols.nupkg"
+  - ps: Push-AppveyorArtifact "bin\Release\XPathParser.1.1.0-r$($env:APPVEYOR_BUILD_NUMBER).nupkg"
+  - ps: Push-AppveyorArtifact "bin\Release\XPathParser.1.1.0-r$($env:APPVEYOR_BUILD_NUMBER).symbols.nupkg"
