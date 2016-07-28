@@ -2,3 +2,7 @@
 .vs/
 bin/
 obj/
+*.nuget.props
+*.nuget.targets
+/packages
+*.user

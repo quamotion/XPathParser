@@ -1,0 +1,14 @@
+﻿<step>
+  <Root nodeTyepe="All" prefix="(null)" name="(null)" />
+  <predicate reverse="false">
+    <Child nodeTyepe="Element" prefix="" name="para" />
+    <Eq>
+      <function prefix="" name="substring">
+        <string value="12345" />
+        <number value="0" />
+        <number value="3" />
+      </function>
+      <string value="1234" />
+    </Eq>
+  </predicate>
+</step>

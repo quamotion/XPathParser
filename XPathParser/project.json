@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.1.0-*",
 
   "authors": [ "Sergey Dubinets" ],
@@ -11,10 +11,11 @@
     "repository": {
       "type": "git",
       "url": "https://github.com/quamotion/XPathParser"
-    },
+    }
   },
 
   "dependencies": {
+    "NETStandard.Library": "1.6.0"
   },
 
   "buildOptions": {
@@ -24,14 +25,8 @@
 
   "frameworks": {
     "netstandard1.3": {
-      "imports": "dnxcore50",
       "dependencies": {
-        "System.Xml.XPath": "4.0.1",
-        "System.Collections": "4.0.11",
-        "System.Text.RegularExpressions": "4.1.0",
-        "System.Diagnostics.Debug": "4.0.11",
-        "System.Globalization": "4.0.11",
-        "System.Runtime.Extensions": "4.1.0"
+        "System.Xml.XPath": "4.0.1"
       }
     },
     "net20": {
@@ -40,6 +35,11 @@
       }
     },
     "net30": {
+      "frameworkAssemblies": {
+        "System.Xml": "2.0.0.0"
+      }
+    },
+    "net35": {
       "frameworkAssemblies": {
         "System.Xml": "2.0.0.0"
       }
@@ -53,6 +53,13 @@
       "frameworkAssemblies": {
         "System.Xml": "4.0.0.0"
       }
+    },
+    "net46": {
+      "dependencies": {
+        "System.Xml.XPath": "4.0.1"
+
+      }
     }
-  }
+  },
+  "supports": {}
 }

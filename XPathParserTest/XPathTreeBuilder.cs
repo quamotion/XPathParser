@@ -54,7 +54,7 @@ namespace XPathParserTest {
         }
 
         public XElement Function(string prefix, string name, IList<XElement> args) {
-            XElement xe = new XElement("variable",
+            XElement xe = new XElement("function",
                 new XAttribute("prefix", prefix ?? "(null)"),
                 new XAttribute("name", name ?? "(null)")
             );
