@@ -6,3 +6,4 @@ obj/
 *.nuget.targets
 /packages
 *.user
+/XPathParser.sln.DotSettings
