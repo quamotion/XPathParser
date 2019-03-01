@@ -1,106 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CodePlex.XPathParser;
+﻿using CodePlex.XPathParser;
+using System;
 using System.Diagnostics;
-using System.Xml.XPath;
-using System.Xml.Linq;
 using System.Xml;
+using System.Xml.Linq;
+using Xunit;
 
-namespace XPathParserTest {
-    class Test {
-        static string[] correctTests = {
-             // Expressions from http://www.w3.org/TR/xpath#location-paths
-            @"child::para"                                                          ,
-            @"child::*"                                                             ,
-            @"child::text()"                                                        ,
-            @"child::node()"                                                        ,
-            @"attribute::name"                                                      ,
-            @"attribute::*"                                                         ,
-            @"descendant::para"                                                     ,
-            @"ancestor::div"                                                        ,
-            @"ancestor-or-self::div"                                                ,
-            @"descendant-or-self::para"                                             ,
-            @"self::para"                                                           ,
-            @"child::chapter/descendant::para"                                      ,
-            @"child::*/child::para"                                                 ,
-            @"/"                                                                    ,
-            @"/descendant::para"                                                    ,
-            @"/descendant::olist/child::item"                                       ,
-            @"child::para[position()=1]"                                            ,
-            @"child::para[position()=last()]"                                       ,
-            @"child::para[position()=last()-1]"                                     ,
-            @"child::para[position()>1]"                                            ,
-            @"following-sibling::chapter[position()=1]"                             ,
-            @"preceding-sibling::chapter[position()=1]"                             ,
-            @"/descendant::figure[position()=42]"                                   ,
-            @"/child::doc/child::chapter[position()=5]/child::section[position()=2]",
-            @"child::para[attribute::type=""warning""]"                             ,
-            @"child::para[attribute::type='warning'][position()=5]"                 ,
-            @"child::para[position()=5][attribute::type=""warning""]"               ,
-            @"child::chapter[child::title='Introduction']"                          ,
-            @"child::chapter[child::title]"                                         ,
-            @"child::*[self::chapter or self::appendix]"                            ,
-            @"child::*[self::chapter or self::appendix][position()=last()]"         ,
-        };
-
-        static string[] errorTests = {
-            @""     ,
-            @"a b"  ,
-            @"a["   ,
-            @"]"    ,
-            @"///"  ,
-            @"fo("  ,
-            @")"    ,
-            @"a[']" ,
-            @"b[""]",
-            @"3e8"  ,
-            @"child::*[self::chapter or self::appendix][position()=last()] child::*[self::chapter or self::appendix][position()=last()]",
-        };
-
-        static void Main(string[] args) {
-            foreach (string testCase in correctTests) {
-                RunTestString(testCase);
-            }
-            Console.WriteLine();
-
-            foreach (string testCase in correctTests) {
-                RunTestTree(testCase);
-            }
-            Console.WriteLine();
-
-            Console.WriteLine("------------- Error Cases -----------------");
-            foreach (string testCase in errorTests) {
-                RunTestTree(testCase);
-            }
+namespace XPathParserTest
+{
+    public class Test
+    {
+        // Expressions from http://www.w3.org/TR/xpath#location-paths
+        [InlineData(@"child::para")]
+        [InlineData(@"child::*")]
+        [InlineData(@"child::text()")]
+        [InlineData(@"child::node()")]
+        [InlineData(@"attribute::name")]
+        [InlineData(@"attribute::*")]
+        [InlineData(@"descendant::para")]
+        [InlineData(@"ancestor::div")]
+        [InlineData(@"ancestor-or-self::div")]
+        [InlineData(@"descendant-or-self::para")]
+        [InlineData(@"self::para")]
+        [InlineData(@"child::chapter/descendant::para")]
+        [InlineData(@"child::*/child::para")]
+        [InlineData(@"/")]
+        [InlineData(@"/descendant::para")]
+        [InlineData(@"/descendant::olist/child::item")]
+        [InlineData(@"child::para[position()=1]")]
+        [InlineData(@"child::para[position()=last()]")]
+        [InlineData(@"child::para[position()=last()-1]")]
+        [InlineData(@"child::para[position()>1]")]
+        [InlineData(@"following-sibling::chapter[position()=1]")]
+        [InlineData(@"preceding-sibling::chapter[position()=1]")]
+        [InlineData(@"/descendant::figure[position()=42]")]
+        [InlineData(@"/child::doc/child::chapter[position()=5]/child::section[position()=2]")]
+        [InlineData(@"child::para[attribute::type=""warning""]")]
+        [InlineData(@"child::para[attribute::type='warning'][position()=5]")]
+        [InlineData(@"child::para[position()=5][attribute::type=""warning""]")]
+        [InlineData(@"child::chapter[child::title='Introduction']")]
+        [InlineData(@"child::chapter[child::title]")]
+        [InlineData(@"child::*[self::chapter or self::appendix]")]
+        [InlineData(@"child::*[self::chapter or self::appendix][position()=last()]")]
+        [Theory]
+        public void CorrectTest(string expression)
+        {
+            RunTestString(expression);
+            RunTestTree(expression);
         }
 
-        static void RunTestString(string xpathExpr) {
-            Console.WriteLine("Original XPath: {0}", xpathExpr);
-            try {
-                Console.WriteLine("Translated one: {0}", new XPathParser<string>().Parse(xpathExpr, new XPathStringBuilder()));
-            } catch (XPathParserException e) {
-                Console.WriteLine(e.ToString());
-            }
-            Console.WriteLine();
+        [InlineData(@"")]
+        [InlineData(@"a b")]
+        [InlineData(@"a[")]
+        [InlineData(@"]")]
+        [InlineData(@"///")]
+        [InlineData(@"fo(")]
+        [InlineData(@")")]
+        [InlineData(@"a[']")]
+        [InlineData(@"b[""]")]
+        [InlineData(@"3e8")]
+        [InlineData(@"child::*[self::chapter or self::appendix][position()=last()] child::*[self::chapter or self::appendix][position()=last()]")]
+        [Theory]
+        public void ErrorTest(string expression)
+        {
+            Assert.Throws<XPathParserException>(() => RunTestTree(expression));
         }
 
-        static void RunTestTree(string xpathExpr) {
-            Console.WriteLine("Original XPath: {0}", xpathExpr);
-            try {
-                XElement xe = new XPathParser<XElement>().Parse(xpathExpr, new XPathTreeBuilder());
-                XmlWriterSettings ws = new XmlWriterSettings(); {
-                    ws.Indent = true;
-                    ws.OmitXmlDeclaration = true;
-                }
-                using (XmlWriter w = XmlWriter.Create(Console.Out, ws)) {
-                    xe.WriteTo(w);
-                }                
-            } catch (XPathParserException e) {
-                Console.WriteLine(e.ToString());
+        static void RunTestString(string xpathExpr)
+        {
+            Debug.WriteLine("Translated one: {0}", new XPathParser<string>().Parse(xpathExpr, new XPathStringBuilder()));
+        }
+
+        static void RunTestTree(string xpathExpr)
+        {
+            XElement xe = new XPathParser<XElement>().Parse(xpathExpr, new XPathTreeBuilder());
+            XmlWriterSettings ws = new XmlWriterSettings();
+            {
+                ws.Indent = true;
+                ws.OmitXmlDeclaration = true;
             }
-            Console.WriteLine();
-            Console.WriteLine();
+            using (XmlWriter w = XmlWriter.Create(Console.Out, ws))
+            {
+                xe.WriteTo(w);
+            }
         }
     }
 }

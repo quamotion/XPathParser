@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CodePlex.XPathParser;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using CodePlex.XPathParser;
 using System.Diagnostics;
 using System.Xml.XPath;
 
-namespace XPathParserTest {
+namespace XPathParserTest
+{
     class XPathStringBuilder : IXPathBuilder<string> {
         #region IXPathBuilder<string> Members
 
