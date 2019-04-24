@@ -6,8 +6,6 @@
     <Product>.NET XPath Parser</Product>
     <Description>XPath parser in C# source code.</Description>
     <PackageLicenseUrl>https://github.com/quamotion/XPathParser/blob/master/LICENSE.txt</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/quamotion/XPathParse</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>XPathParser.snk</AssemblyOriginatorKeyFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
