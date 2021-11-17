@@ -393,6 +393,24 @@ namespace CodePlex.XPathParser {
 
         private void ScanNumber() {
             Debug.Assert(IsAsciiDigit(curChar) || curChar == '.');
+
+            // Check if hexidecimal
+            if (curChar == '0')
+            {
+                NextChar();
+                if (curChar == 'x')
+                {
+                    NextChar();
+
+                    while (IsAsciiDigit(curChar))
+                    {
+                        NextChar();
+                    }
+
+                    return;
+                }
+            }
+
             while (IsAsciiDigit(curChar)) {
                 NextChar();
             }
