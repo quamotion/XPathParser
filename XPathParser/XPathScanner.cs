@@ -410,7 +410,6 @@ namespace CodePlex.XPathParser {
                 while (IsAsciiDigit(curChar)) {
                     NextChar();
                 }
-                throw ScientificNotationException();
             }
         }
 
@@ -495,11 +494,6 @@ namespace CodePlex.XPathParser {
         public XPathParserException PredicateAfterDotDotException() {
             return new XPathParserException(xpathExpr, lexStart, curIndex,
                 "Abbreviated step '..' cannot be followed by a predicate. Use the full form 'parent::node()[predicate]' instead."
-            );
-        }
-        public XPathParserException ScientificNotationException() {
-            return new XPathParserException(xpathExpr, lexStart, curIndex,
-                "Scientific notation is not allowed."
             );
         }
         public XPathParserException UnclosedStringException() {

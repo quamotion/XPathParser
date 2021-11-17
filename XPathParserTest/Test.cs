@@ -1,14 +1,21 @@
 ﻿using CodePlex.XPathParser;
-using System;
-using System.Diagnostics;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace XPathParserTest
 {
     public class Test
     {
+        private readonly ITestOutputHelper _output;
+
+        public Test(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         // Expressions from http://www.w3.org/TR/xpath#location-paths
         [InlineData(@"child::para")]
         [InlineData(@"child::*")]
@@ -36,6 +43,9 @@ namespace XPathParserTest
         [InlineData(@"/child::doc/child::chapter[position()=5]/child::section[position()=2]")]
         [InlineData(@"child::para[attribute::type=""warning""]")]
         [InlineData(@"child::para[attribute::type='warning'][position()=5]")]
+        [InlineData(@"3e8")]
+        [InlineData(@"3.5e8")]
+        [InlineData(@"-3.5e8")]
         [InlineData(@"child::para[position()=5][attribute::type=""warning""]")]
         [InlineData(@"child::chapter[child::title='Introduction']")]
         [InlineData(@"child::chapter[child::title]")]
@@ -57,7 +67,6 @@ namespace XPathParserTest
         [InlineData(@")")]
         [InlineData(@"a[']")]
         [InlineData(@"b[""]")]
-        [InlineData(@"3e8")]
         [InlineData(@"child::*[self::chapter or self::appendix][position()=last()] child::*[self::chapter or self::appendix][position()=last()]")]
         [Theory]
         public void ErrorTest(string expression)
@@ -65,12 +74,12 @@ namespace XPathParserTest
             Assert.Throws<XPathParserException>(() => RunTestTree(expression));
         }
 
-        static void RunTestString(string xpathExpr)
+        void RunTestString(string xpathExpr)
         {
-            Debug.WriteLine("Translated one: {0}", new XPathParser<string>().Parse(xpathExpr, new XPathStringBuilder()));
+            _output.WriteLine("Translated one: {0}", new XPathParser<string>().Parse(xpathExpr, new XPathStringBuilder()));
         }
 
-        static void RunTestTree(string xpathExpr)
+        void RunTestTree(string xpathExpr)
         {
             XElement xe = new XPathParser<XElement>().Parse(xpathExpr, new XPathTreeBuilder());
             XmlWriterSettings ws = new XmlWriterSettings();
@@ -78,10 +87,12 @@ namespace XPathParserTest
                 ws.Indent = true;
                 ws.OmitXmlDeclaration = true;
             }
-            using (XmlWriter w = XmlWriter.Create(Console.Out, ws))
+            var sb = new StringBuilder();
+            using (XmlWriter w = XmlWriter.Create(sb, ws))
             {
                 xe.WriteTo(w);
             }
+            _output.WriteLine(sb.ToString());
         }
     }
 }
