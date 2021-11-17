@@ -41,6 +41,7 @@ namespace XPathParserTest
         [InlineData(@"child::chapter[child::title]")]
         [InlineData(@"child::*[self::chapter or self::appendix]")]
         [InlineData(@"child::*[self::chapter or self::appendix][position()=last()]")]
+        [InlineData(@"@w:p > 0 and @w:p < 0x80000000")]
         [Theory]
         public void CorrectTest(string expression)
         {
